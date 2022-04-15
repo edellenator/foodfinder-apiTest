@@ -20,8 +20,7 @@ var geoUrl = "https://nominatim.openstreetmap.org/search?q=400+north+louise+stre
 
 var fetchGeoData = function(){
   fetch(geoUrl, {
-    headers:originHeader,
-    method: 'options',
+    headers:originHeader
   }).then(function(response){
     if (response.ok) {
       response.json().then(function(data){
