@@ -15,14 +15,13 @@ var yelpAPI="https://api.yelp.com/v3/businesses/search?term=by-chloe&location=bo
 // https://cors-anywhere.herokuapp.com/
 
 const geoKey = "";
-var geoUrl = "https://nominatim.openstreetmap.org/search?q=400+north+louise+street,+glendale&addressdetails=1";
+var geoUrl = "https://nominatim.openstreetmap.org/search?q=400+north+louise+street,+glendale&addressdetails=1/";
 
 
 var fetchGeoData = function(){
   fetch(geoUrl, {
     headers:originHeader,
     method: 'options',
-    method: 'get',
   }).then(function(response){
     if (response.ok) {
       response.json().then(function(data){
