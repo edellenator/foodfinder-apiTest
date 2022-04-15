@@ -1,7 +1,8 @@
 const yelpKey = "";
-let myHeaders = new Headers();
-myHeaders.append("Access-Control-Allow-Origin", "*");
-
+let originHeader = new Headers();
+let methodHeader = new Headers();
+originHeader.append("Access-Control-Allow-Origin", "*");
+methodHeader.append("Access-Control-Allow-Methods", "fetch")
 var yelpAPI="https://api.yelp.com/v3/businesses/search?term=by-chloe&location=boston"
 
 // fetch(yelpAPI, {
@@ -11,17 +12,27 @@ var yelpAPI="https://api.yelp.com/v3/businesses/search?term=by-chloe&location=bo
 // }).then((data) => {
 //   console.log(data);
 // });
-
+// https://cors-anywhere.herokuapp.com/
 
 const geoKey = "";
 var geoUrl = "https://nominatim.openstreetmap.org/search?q=400+north+louise+street,+glendale&addressdetails=1&limit=10&extratags=1";
 
 
-fetch(geoUrl, {headers: myHeaders})
-.then((response) => {
-  return response.json();
-}).then((data) => {
-  console.log(data);
-});
+var fetchGeoData = function(){
+  fetch(geoUrl, {
+    headers:originHeader,
+    method: 'options',
+    method: 'get',
+  }).then(function(response){
+    if (response.ok) {
+      response.json().then(function(data){
+        console.log(data);
+      })
+    }
+    else {
+      console.log('selection invalid')
+    }
+  })
+};
 
-
+fetchGeoData();
